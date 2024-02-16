@@ -14,7 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.amphibians_api.R
+import com.example.amphibians_api.ui.screens.AmphibiansViewModel
 import com.example.amphibians_api.ui.screens.HomeScreen
 
 @Composable
@@ -26,9 +29,13 @@ fun AmphibiansApp() {
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
-            HomeScreen()
+            val ampViewModel: AmphibiansViewModel = viewModel(factory = AmphibiansViewModel.Factory)
+            HomeScreen(
+                amphibiansUiState = ampViewModel.amphibianUiState,
+                retryAction = ampViewModel::getAmphibians,
+                contentPadding = it
+            )
         }
-        val contentPadding = it
     }
 }
 
