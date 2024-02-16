@@ -103,6 +103,9 @@ fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Start
             )
 
+            // AsyncImage is provided by coil
+            // This "AsyncImage is a composable just like 'Text' "
+            // It provides a simple and efficient way to load images asynchronously.
             AsyncImage(
                 modifier = Modifier.fillMaxWidth(),
                 model = ImageRequest.Builder(context = LocalContext.current)
@@ -139,9 +142,11 @@ private fun AmphibiansListScreen(
         items(
             items = amphibians,
             key = { amphibian ->
+                // it.name
                 amphibian.name
             }
         ) { amphibian ->
+            // it
             AmphibianCard(amphibian = amphibian, modifier = Modifier.fillMaxSize())
         }
     }
